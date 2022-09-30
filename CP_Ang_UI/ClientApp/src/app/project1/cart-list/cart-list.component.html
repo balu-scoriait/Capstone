@@ -1,0 +1,71 @@
+<div class="container">
+  <div style="margin-top:10px;">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" style="text-align:justify-all">
+
+        <ng-container matColumnDef="image_url">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> image_url </th>
+          <td mat-cell *matCellDef="let row"><img [src]="row.image_url" style="width:100px;height:150px" class="zoom"></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="product_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> product_id </th>
+          <td mat-cell *matCellDef="let row">{{row.product_id}}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="product_quantity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> product_quantity </th>
+          <td mat-cell *matCellDef="let row"> {{row.product_quantity}} </td>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="product_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> product_name </th>
+          <td mat-cell *matCellDef="let row"> {{row.product_name}} </td>
+        </ng-container>
+
+
+
+
+
+        <ng-container matColumnDef="product_price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> product_price </th>
+          <td mat-cell *matCellDef="let row"> {{row.product_price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> username </th>
+          <td mat-cell *matCellDef="let row"> {{row.username}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total_price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> total_price </th>
+          <td mat-cell *matCellDef="let row"> {{row.total_price}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <ng-container matColumnDef="Perform">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Perform </th>
+          <td mat-cell *matCellDef="let row">
+
+           
+            <button mat-icon-button color="warn" (click)="deleteEmployee(row.product_id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[1,2, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div><br />
+
+    <button routerLink="/products" class="btn btn-primary mx-2">Shop More</button>
+
+  </div>
+</div>

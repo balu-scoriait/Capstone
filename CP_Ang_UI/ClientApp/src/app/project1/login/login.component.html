@@ -1,0 +1,41 @@
+<p> Login Details</p>
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="col-md-6 d-none d-md-flex bg-image"></div>
+    <div class="col-md-6 bg-light">
+      <div class="login d-flex align-items-center py-5">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+              <h3 class="display-3">Login</h3>
+
+              <form [formGroup]="loginForm">
+                <div>
+                  <input type="text" id="username" formControlName="username" placeholder="enter username" class="form-control rounded-pill box-shadow" />
+                  <span *ngIf="(this.loginForm.get('username')?.touched || this.loginForm.get('username')?.dirty) && this.loginForm.get('username')?.errors">
+                    <span *ngIf="this.loginForm.get('username')?.errors?.required">Username is Required </span>
+                  </span>
+                </div><br />
+
+                <div>
+                  <input type="text" id="password" formControlName="password" placeholder="enter password" class="form-control rounded-pill box-shadow" />
+                  <span *ngIf="(this.loginForm.get('password')?.touched || this.loginForm.get('password')?.dirty) && this.loginForm.get('password')?.errors">
+                    <span *ngIf="this.loginForm.get('password')?.errors?.required">Password is Required </span>
+                  </span>
+                </div><br />
+
+
+                <button (click)="onSubmit()" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
+
+
+                <div *ngIf="Status" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

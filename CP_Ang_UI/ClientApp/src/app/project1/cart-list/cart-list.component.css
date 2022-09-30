@@ -1,0 +1,33 @@
+/*table , th , td , tr{
+    border:1px solid blue;
+    padding:10px 10px 10px
+}
+*/
+
+.example-spacer {
+  flex: 1 1;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: auto;
+}
+
+td, th {
+  width: 100px;
+}
+
+.container {
+  max-width: 1500px;
+}
+
+.zoom {
+  background-color: none;
+  transition: transform .5s; /* Animation */
+
+  margin: 0 auto;
+}

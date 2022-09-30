@@ -1,0 +1,60 @@
+<p> Registration Details</p>
+<div class="container-fluid">
+  <div class="row no-gutter">
+
+    <div class="margin-left:auto;margin-right:auto" align="center"></div>
+    <div class="col-md-6 d-none d-md-flex bg-image"></div>
+    <div class="col-md-6 bg-light">
+      <div class="login d-flex align-items-center py-5">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+              <h3 class="display-3">Register</h3>
+
+
+              <form [formGroup]="registerForm">
+
+                <div>
+                  <input type="text" id="name" formControlName="name" placeholder="enter name" class="form-control rounded-pill box-shadow" />
+                  <span *ngIf="(this.registerForm.get('name')?.touched || this.registerForm.get('name')?.dirty) && this.registerForm.get('name')?.errors">
+                    <span *ngIf="this.registerForm.get('name')?.errors?.required">Name is Required </span>
+                  </span>
+                </div><br />
+
+                <div>
+                  <input type="text" id="email" formControlName="email" placeholder="enter email" class="form-control rounded-pill box-shadow" />
+                  <span *ngIf="(this.registerForm.get('email')?.touched || this.registerForm.get('email')?.dirty) && this.registerForm.get('email')?.errors">
+                    <span *ngIf="this.registerForm.get('email')?.errors?.required">Email is Required </span>
+                  </span>
+                </div><br />
+
+
+                <div>
+                  <input type="text" id="username" formControlName="username" placeholder="enter username" class="form-control rounded-pill box-shadow" />
+                  <span *ngIf="(this.registerForm.get('username')?.touched || this.registerForm.get('username')?.dirty) && this.registerForm.get('username')?.errors">
+                    <span *ngIf="this.registerForm.get('username')?.errors?.required">Username is Required </span>
+                  </span>
+                </div><br />
+
+                <div>
+                  <input type="text" id="password" formControlName="password" placeholder="enter password" class="form-control rounded-pill box-shadow" />
+                  <span *ngIf="(this.registerForm.get('password')?.touched || this.registerForm.get('password')?.dirty) && this.registerForm.get('password')?.errors">
+                    <span *ngIf="this.registerForm.get('password')?.errors?.required">Password is Required </span>
+                  </span>
+                </div><br />
+
+
+                <button (click)="registerClick()" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Register</button><br />
+                <div *ngIf="status" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Registered Successfully!</div>
+
+              </form>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
