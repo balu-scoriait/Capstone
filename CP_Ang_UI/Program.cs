@@ -17,7 +17,7 @@ builder.Services.AddSession();
 var app = builder.Build();
 // *********** Added CORS ***********
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); // Added CORS
-// *********** Added CORS ***********
+// *********** Added CORS balu *********** 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
