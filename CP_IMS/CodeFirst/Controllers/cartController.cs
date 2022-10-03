@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Data;
 
 namespace CodeFirst.Controllers
@@ -22,37 +23,45 @@ namespace CodeFirst.Controllers
         }
 
         [HttpGet]
-        [Route("addtocart")]
-        public IEnumerable<cart> getcartlist()
+        [Route("username")]
+        public IEnumerable<cart> getcartlist(string username)
         {
-            return _repo.getcartlist();
+            return _repo.getcartlist(username);
+
         }
 
+        [HttpGet]
+        [Route("getcart")]
+        public IEnumerable<cart> getcart()
+        {
+            return _repo.getcarts();
+        }
 
         [HttpPost]
         [Route("addtocart")]
-        public IActionResult Create([FromBody] cart Cart)
-        {
-
-            var status = _repo.addcartlist(Cart);
-
-            if (status == "OK")
+        public IActionResult Create([FromBody] cart c)
             {
-                return Ok(new { message = "product added to successfully!" });
-            }
-            else
-            {
-                return StatusCode(429, status);
+
+                var status = _repo.addcartlist(c);
+
+                if (status == "Ok")
+                {
+                    return Ok(new { message = "product added to cart successfully!" });
+                }
+                else
+                {
+                    return StatusCode(429, status);
+                }
             }
         }
 
 
 
-
-        [HttpDelete("{product_id}")]
-        public JsonResult Delete(int product_id)
+    /*
+    [HttpDelete("{productID}")]
+        public JsonResult Delete(int productID)
         {
-            string query = @"delete from dbo.Cart where product_id=@product_id";
+            string query = @"delete from dbo.Cart where productID=@productID";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("registerConn");
             SqlDataReader myReader;
@@ -61,7 +70,7 @@ namespace CodeFirst.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@product_id", product_id);
+                    myCommand.Parameters.AddWithValue("@productID", productID);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
                     myReader.Close();
@@ -70,5 +79,5 @@ namespace CodeFirst.Controllers
             }
             return new JsonResult("Deleted Product");
         }
-    }
+    */
 }

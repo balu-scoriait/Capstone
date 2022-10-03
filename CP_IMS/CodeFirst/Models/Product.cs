@@ -4,10 +4,10 @@ namespace CodeFirst.Models
 {
     public class Product
     {
-        [Column("product_id")] public int product_id { get; set; }
-        [Column("product_name")] public string? product_name { get; set; }
-        [Column("product_price")] public int product_price { get; set; }
-        [Column("image_url")] public string? image_url { get; set; }
+        [Column("productID")] public int productID { get; set; }
+        [Column("productName")] public string? productName { get; set; }
+        [Column("productPrice")] public int productPrice { get; set; }
+        [Column("imageUrl")] public string? imageUrl { get; set; }
     }
 }
 

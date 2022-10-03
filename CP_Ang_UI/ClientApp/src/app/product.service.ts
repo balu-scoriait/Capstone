@@ -11,13 +11,16 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>("http://alphacart.com/products")
+    return this.http.get<IProduct[]>("http://localhost:5137/Products")
   }
 
-
- /* getProduct() {
+/*
+  getProduct() {
     return this.http.get<any>("http://localhost:5257/api/Product/");
   }
+  http://alphacart.com/products
+
+http://localhost:5137/Products
 
   postProduct(details: any) {
     return this.http.post<any>("http://localhost:5257/api/Product/", details);
@@ -25,8 +28,8 @@ export class ProductService {
 
   putProdct(details: any) {
     return this.http.put<any>("http://localhost:5257/api/Product/", details)
-  }
-*/
+  }*/
+
 
 
 }

@@ -20,6 +20,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils" Version="6.0.8" />
     <PackageReference Include="Stripe.net" Version="40.8.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +42,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\project1\product-list\IProduct.ts" />
     <TypeScriptCompile Include="ClientApp\IUser.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\file.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\Authentication\" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

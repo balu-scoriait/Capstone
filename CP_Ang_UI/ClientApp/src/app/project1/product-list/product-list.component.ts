@@ -15,22 +15,35 @@ import { ICart } from '../../ICart';
 })
 export class ProductListComponent implements OnInit {
   products: IProduct[] = [];
-  cart: ICart
+  cart: ICart | any;
+  items: any;
+  totalItem: number = 0;
   retVal: string = '';
-  constructor(private _productService: ProductService, private atr: ActivatedRoute, private cartservice: CartService) {
-    this.products = this.atr.snapshot.data['products']
+  constructor(private _productService: ProductService, private atr: ActivatedRoute, private cartservice: CartService, private auth: AuthenticationService) {
+this.products = this.atr.snapshot.data['products'];
+this.cart = {
+  productID: 1,
+  productName: 'X',
+  productPrice: 123,
+  imageUrl: 'X',
+  productQty: 1,
+  totalPrice: 123,
+  username: ''
+  };
+  }
 
-    this.cart = { username:'',product_id: 1, product_name: 'product_name', product_price: 25000, image_url: 'image_url', product_quantity: 1, total_price: 25000 };
-  }
-  ngOnInit(): void {
-    
-     
-      
-  }
-  addcart(product_id: number, product_name: string, product_price: number, image_url: string) {
-    this.cart = { username: 'username',product_id: product_id, product_name: product_name, product_price: product_price, image_url: image_url, product_quantity: 1, total_price: 25000 }
-    console.log(product_id);
-    this.cartservice.addtoCart(this.cart).subscribe((d) => { this.retVal = d; console.log("XXXXXX------->"); console.log(d); alert('Product Added Successfully!'); });
+  ngOnInit(): void { }
+
+  addcart(productID: number, productName: string, productPrice: number, imageUrl: string) {
+    this.cart = { username: localStorage.getItem('UserName')?.toString(), productID: productID, productName: productName, productPrice: productPrice, imageUrl: imageUrl, productQty: 1, totalPrice: 25000 };
+    console.log(productID);
+    this.cartservice.addtoCart(this.cart).subscribe((d) => {
+      this.retVal = d;
+      console.log(this.cart);
+      this.auth.cartcount.subscribe((r) => { this.totalItem = r; });
+      this.auth.cartcount.next(this.totalItem + 1);
+      alert('Product Added Successfully!');
+    });
   }
   }
         

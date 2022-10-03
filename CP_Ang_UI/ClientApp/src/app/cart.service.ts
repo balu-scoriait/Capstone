@@ -7,16 +7,29 @@ import { ICart } from './ICart';
   providedIn: 'root'
 })
 export class CartService {
-  removeCarItem: any;
-    removeAllCart: any;
-    getTotalPrice: any;
-  getproducts: any;
-  deleteproduct: any;
+  public productList = new BehaviorSubject<any>([]);
+  public cartList: any = []
   constructor(private http: HttpClient) { }
-  addtoCart(cart: ICart) {
-    return this.http.post<string>("http://alphacart.com/cart/addtocart", cart);
+
+addtoCart(cart: ICart)
+{
+return this.http.post<string>("http://localhost:5137/cart/addtocart", cart);
+}
+
+
+getcart(username : string)
+{
+  return this.http.get<any>("http://localhost:5137/cart/username?username=" + username);
+}
+
+deleteproduct(productID: number)
+{
+  return this.http.delete<any>("http://fake.alpha.com/api/cart/" + productID)
+}
+
+  removeAllCart() {
+
   }
-  getcart(): Observable<ICart[]> {
-    return this.http.get<ICart[]>("http://alphacart.com/cart")
-  }
+
+
 }

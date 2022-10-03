@@ -27,7 +27,9 @@ builder.Services.AddScoped<ITokenService , TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher,PasswordHasher>();
 builder.Services.AddHttpContextAccessor();
-
+// *********** Added CORS ***********
+builder.Services.AddCors(c => { c.AddPolicy("AllowOrigin", Options => Options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); });
+// *********** Added CORS ***********
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -54,13 +56,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew =TimeSpan.Zero
         };
     });
-builder.Services.AddCors(options => options.AddPolicy(name: "NgOrigins",
-    policy =>
-    {
-        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
-    }));
 
 var app = builder.Build();
+// *********** Added CORS ***********
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); // Added CORS
+// *********** Added CORS ***********
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -69,7 +69,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("NgOrigins");
+/*app.UseCors("NgOrigins");*/
 
 app.UseHttpsRedirection();
 

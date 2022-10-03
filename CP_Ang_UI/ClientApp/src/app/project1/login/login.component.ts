@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         console.log("retVal[0] :" + this.accessToken);
         console.log("this.retVal[1] :" + JSON.stringify(r[1]));
         this.authService.login(this.accessToken, JSON.stringify(r[1]), this.loginForm.get("username").value);
-        /*this._router.navigate(['homes']);*/
+        this._router.navigate(['/']);
       }
     });
   }

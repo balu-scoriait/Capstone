@@ -16,7 +16,7 @@ namespace Ecommerces_MS.Repository
 
         public string createCustomers(UserRegister c)
         {
-            _dbcontext.Customer4.Add (new Usermodel
+            _dbcontext.Users.Add (new Usermodel
             {
                 
                 username = c.username,

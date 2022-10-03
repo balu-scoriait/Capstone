@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class CartListComponent implements OnInit {
   cart: ICart[] = []
-
+  public username: any = localStorage.getItem('UserName');
   displayedColumns: string[] = ['product_id', 'product_name', 'product_price', 'image_url', 'product_quantity', 'total_price', 'Perform'];
   dataSource !: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -19,15 +19,16 @@ export class CartListComponent implements OnInit {
 
   constructor(private cartService: CartService) { }
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getAllProducts(this.username);
   }
 
 
 
 
 
-  getAllProducts() {
-    this.cartService.getcart().subscribe({
+  getAllProducts(username: string)
+  {
+    this.cartService.getcart(username).subscribe({
       next: (result: any[] | undefined) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
@@ -35,11 +36,11 @@ export class CartListComponent implements OnInit {
     })
   }
 
-  deleteEmployee(productid: number) {
-    this.cartService.deleteproduct(productid).subscribe({
+  deleteCart(productID: number) {
+    this.cartService.deleteproduct(productID).subscribe({
       next: () => {
         alert("Deleted Successfully..!");
-        this.getAllProducts();
+        this.getAllProducts(this.username);
       }
     })
   }
@@ -48,8 +49,6 @@ export class CartListComponent implements OnInit {
     this.cartService.removeAllCart();
   }
 
-  deleterow(row: any) {
-    this.cartService.removeAllCart(row);
-  }
+ 
 }
 

@@ -57,7 +57,7 @@ namespace Ecommerces_MS.Controllers
         public IActionResult LoginCheck([FromBody] Loginmodel value)
         {
             _dbContext.BuildConnectionString(_configuration.GetConnectionString("registerConn"));
-            var user = _dbContext.Customer4.SingleOrDefault(u => u.username == value.username);
+            var user = _dbContext.Users.SingleOrDefault(u => u.username == value.username);
             if (user == null || !_passwordHasher.VerifyIdentityV3Hash(value.password, user.password))
             { 
                 return BadRequest(new { message = "Invalid - username or password" }); 

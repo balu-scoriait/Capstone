@@ -25,6 +25,35 @@ namespace Ecommerces.Models
 
         }
 
+
+        public async Task<int> getcartitemcount(string username)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri("http://localhost:5137/");     //APIGateway_BaseAddress);
+                client.DefaultRequestHeaders.Accept.Clear();
+                //string serializedObject = JsonConvert.SerializeObject(model);
+                //HttpContent contentPost = new StringContent(serializedObject, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.GetAsync("cart/username?username=" + username);
+                //****************************************************************************************************************************** 
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var catitems = JsonConvert.DeserializeObject<Cart[]>(json);
+                    return catitems.Sum(c => c.productQty);
+                }
+
+                return 0;
+
+
+            }
+        }
+
+
+
+
         public async Task<bool> RegisterUserAsync(
             Customer e)
         {

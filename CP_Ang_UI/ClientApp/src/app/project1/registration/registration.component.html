@@ -1,3 +1,4 @@
+<!--
 <p> Registration Details</p>
 <div class="container-fluid">
   <div class="row no-gutter">
@@ -51,10 +52,38 @@
               </form>
             </div>
           </div>
-        
+
         </div>
       </div>
     </div>
   </div>
 </div>
+-->
+
+
+<form [formGroup]="registerForm">
+  <div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <label for="name"><b>username</b></label>
+    <input type="text" id="name" name="name" placeholder="Enter username" formControlName="name">
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" id="email" name="email" placeholder="Enter Email" formControlName="email">
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" id="email" name="email" placeholder="Enter Email" formControlName="username">
+
+    <label for="pswd"><b>Password</b></label>
+    <input type="password" id="pswd" name="pswd" placeholder="Enter Password" formControlName="password">
+
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+    <button type="submit" (click)="registerClick()" class="btn btn-primary ripple btn-lg w-100">Register</button><br /><br />
+    <div *ngIf="status" class="btn-warning">Registered Succesfully</div>
+    <div class=" signin">
+      <p>Already have an account? <a href="#" routerLink="/login">Sign in</a></p>
+    </div>
+  </div>
+</form>
 

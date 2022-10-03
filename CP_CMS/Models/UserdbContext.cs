@@ -4,7 +4,7 @@ namespace Ecommerces_MS.Models
 {
     public class UserdbContext : DbContext
     {
-        public DbSet<Usermodel> Customer4 { get; set; }
+        public DbSet<Usermodel> Users { get; set; }
 
 
         public static string ConnectionString

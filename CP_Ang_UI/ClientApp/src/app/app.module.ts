@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { RegisterComponent } from './Authentication/register/register.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MatIconModule } from '@angular/material/icon';
     ProductListComponent,
     CartListComponent,
     HeaderComponent,
-    ExampleLoginComponent
+    ExampleLoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
